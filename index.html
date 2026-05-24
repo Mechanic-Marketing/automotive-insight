@@ -845,6 +845,42 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       background: var(--ai-gold-dark);
     }
 
+    .btn-submit:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+
+    .form-success {
+      text-align: center;
+      padding: 2rem 0 1rem;
+    }
+
+    .form-success svg {
+      width: 52px;
+      height: 52px;
+      fill: var(--ai-gold);
+      margin-bottom: 1rem;
+    }
+
+    .form-success h3 {
+      font-size: 1.3rem;
+      color: var(--ai-white);
+      margin-bottom: 0.6rem;
+    }
+
+    .form-success p {
+      color: #aaaaaa;
+      font-size: 0.95rem;
+      line-height: 1.65;
+    }
+
+    .form-error-msg {
+      color: #e74c3c;
+      font-size: 0.88rem;
+      margin-top: 0.75rem;
+      text-align: center;
+    }
+
     /* ===== FOOTER ===== */
     footer {
       background: var(--ai-black);
@@ -986,6 +1022,117 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     }
 
     /* ===== RESPONSIVE ===== */
+    /* ===== 20 YEARS / ANNIVERSARY STATS ===== */
+    .anniversary-section {
+      background: var(--ai-dark-bg);
+      padding: 5.5rem 2rem;
+      text-align: center;
+    }
+
+    .anniversary-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .anniversary-section .section-tag {
+      margin-bottom: 1.25rem;
+    }
+
+    .anniversary-section h2 {
+      font-size: 2.1rem;
+      font-weight: 700;
+      color: var(--ai-white);
+      margin-bottom: 1rem;
+      line-height: 1.25;
+    }
+
+    .anniversary-sub {
+      color: #aaaaaa;
+      font-size: 1rem;
+      max-width: 600px;
+      margin: 0 auto 3.5rem;
+      line-height: 1.75;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5rem;
+      margin-bottom: 3rem;
+    }
+
+    .stat-block {
+      padding: 2rem 1.25rem;
+      border-top: 2px solid var(--ai-gold);
+      background: #111111;
+      transition: transform 0.25s ease;
+    }
+
+    .stat-block:hover {
+      transform: translateY(-4px);
+    }
+
+    .stat-number {
+      display: block;
+      font-size: 3rem;
+      font-weight: 700;
+      color: var(--ai-gold);
+      line-height: 1.1;
+      margin-bottom: 0.65rem;
+      letter-spacing: -0.02em;
+    }
+
+    .stat-label {
+      display: block;
+      font-size: 0.76rem;
+      font-weight: 700;
+      color: var(--ai-white);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      line-height: 1.5;
+    }
+
+    .stat-icon-wrap {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 3.6rem;
+      margin-bottom: 0.65rem;
+    }
+
+    .stat-icon-wrap svg {
+      width: 46px;
+      height: 46px;
+      fill: var(--ai-gold);
+    }
+
+    .anniversary-closing {
+      font-size: 0.93rem;
+      color: #777777;
+      font-style: italic;
+      max-width: 500px;
+      margin: 0 auto;
+      line-height: 1.75;
+    }
+
+    @media (max-width: 768px) {
+      .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .anniversary-section h2 {
+        font-size: 1.75rem;
+      }
+    }
+
+    @media (max-width: 400px) {
+      .stats-grid {
+        grid-template-columns: 1fr;
+      }
+      .stat-number {
+        font-size: 2.5rem;
+      }
+    }
+
     @media (max-width: 900px) {
       .main-nav {
         display: none;
@@ -1344,6 +1491,45 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
   </section>
 
+  <!-- ===== 20 YEARS MILESTONE ===== -->
+  <section class="anniversary-section animate-on-scroll" id="anniversary">
+    <div class="anniversary-inner">
+      <span class="section-tag">Est. 2005</span>
+      <h2>Two Decades of Honest Motoring</h2>
+      <p class="anniversary-sub">Since opening our doors in Shenton Park, we've built our reputation one vehicle at a time — through honest advice, careful workmanship, and relationships that last.</p>
+
+      <div class="stats-grid">
+
+        <div class="stat-block">
+          <span class="stat-number" data-target="20" data-suffix="+">0</span>
+          <span class="stat-label">Years in Business</span>
+        </div>
+
+        <div class="stat-block">
+          <span class="stat-number" data-target="10000" data-suffix="+" data-comma="true">0</span>
+          <span class="stat-label">Vehicles Serviced</span>
+        </div>
+
+        <div class="stat-block">
+          <span class="stat-number" data-target="5000" data-suffix="+" data-comma="true">0</span>
+          <span class="stat-label">Diagnostic Scans Performed</span>
+        </div>
+
+        <div class="stat-block">
+          <div class="stat-icon-wrap">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
+            </svg>
+          </div>
+          <span class="stat-label">Family-Owned<br />&amp; Operated</span>
+        </div>
+
+      </div>
+
+      <p class="anniversary-closing">Thank you to every customer who's trusted us with their vehicle over the years. We'd love to keep the tradition going.</p>
+    </div>
+  </section>
+
   <!-- ===== 7. HOW IT WORKS (Fix 9: now after testimonials) ===== -->
   <!-- Fix 9C: dark bg, white step cards, red step numbers -->
   <section class="hiw-section">
@@ -1470,7 +1656,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <h2 id="modalTitle">Book Your Car In</h2>
       <p class="modal-sub">Please fill out the form below and we will reply within 48 hours.</p>
 
-      <form action="mailto:admin@automotiveinsight.com.au" method="post" enctype="text/plain">
+      <form id="bookingForm">
 
         <span class="form-section-label">Contact Details</span>
         <div class="form-row">
@@ -1632,6 +1818,131 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
     }, { threshold: 0.15 });
     document.querySelectorAll('.animate-on-scroll').forEach(el => observer.observe(el));
+  </script>
+
+  <!-- Supabase SDK -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+  <!-- Booking form — Supabase submission with tracking -->
+  <script>
+    (function () {
+      var SUPABASE_URL = 'https://prqbvbhuwfpdkkrkqizj.supabase.co';
+      var SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBycWJ2Ymh1d2ZwZGtrcmtxaXpqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzY5OTA1MzQsImV4cCI6MjA5MjU2NjUzNH0.Io5IHsyp23yThoyZD7Ccs4UygTtwx_0rIRTlnS3pYZQ';
+
+      function getParam(key) {
+        return new URLSearchParams(window.location.search).get(key) || '(not set)';
+      }
+
+      var form = document.getElementById('bookingForm');
+      if (!form) return;
+
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+
+        var submitBtn = form.querySelector('.btn-submit');
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Sending…';
+
+        var sb = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+        var payload = {
+          customer_name:  document.getElementById('name').value.trim(),
+          customer_email: document.getElementById('email').value.trim(),
+          customer_phone: document.getElementById('phone').value.trim(),
+          vehicle_make:   document.getElementById('make').value.trim() || null,
+          vehicle_model:  document.getElementById('model').value.trim() || null,
+          vehicle_year:   document.getElementById('year').value.trim() || null,
+          service_type:   document.getElementById('service').value.trim() || '(not specified)',
+          preferred_date: document.getElementById('date').value || null,
+          preferred_time: document.getElementById('time').value || null,
+          utm_source:     getParam('utm_source'),
+          utm_medium:     getParam('utm_medium'),
+          utm_campaign:   getParam('utm_campaign'),
+          utm_content:    getParam('utm_content'),
+          utm_term:       getParam('utm_term'),
+          gclid:          getParam('gclid')
+        };
+
+        sb.from('ai_bookings').insert([payload]).then(function (result) {
+          if (result.error) throw result.error;
+
+          // Fire all tracking BEFORE replacing the form DOM
+          // WhatConverts — form element must still exist when called
+          if (typeof window.wc_capture_form === 'function') {
+            window.wc_capture_form(form);
+          } else if (typeof window.wc_form_ypbib === 'function') {
+            window.wc_form_ypbib('bookingForm', payload);
+          }
+
+          // GTM / GA4
+          if (window.dataLayer) {
+            dataLayer.push({ event: 'form_submission', form_name: 'booking_form', conversion_type: 'booking_enquiry' });
+          }
+
+          // Google Ads
+          if (typeof gtag === 'function') {
+            gtag('event', 'generate_lead', { service_type: payload.service_type });
+          }
+
+          // Replace form with thank-you (after all tracking has fired)
+          form.innerHTML = '<div class="form-success">'
+            + '<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>'
+            + '<h3>Booking request sent!</h3>'
+            + '<p>We’ll be in touch within 48 hours to confirm your appointment.</p>'
+            + '</div>';
+
+        }).catch(function (err) {
+          console.error('Booking error:', err);
+          submitBtn.disabled = false;
+          submitBtn.textContent = 'submit ➜';
+          var errMsg = form.querySelector('.form-error-msg');
+          if (!errMsg) {
+            errMsg = document.createElement('p');
+            errMsg.className = 'form-error-msg';
+            errMsg.textContent = 'Something went wrong — please call us on 08 6150 5820.';
+            form.appendChild(errMsg);
+          }
+        });
+      });
+    })();
+  </script>
+
+  <!-- Anniversary counter animation -->
+  <script>
+    (function () {
+      var statsSection = document.querySelector('.anniversary-section');
+      if (!statsSection) return;
+
+      var fired = false;
+
+      var counterObserver = new IntersectionObserver(function (entries) {
+        if (fired || !entries[0].isIntersecting) return;
+        fired = true;
+        counterObserver.unobserve(statsSection);
+
+        statsSection.querySelectorAll('.stat-number[data-target]').forEach(function (el) {
+          var target = parseInt(el.dataset.target, 10);
+          var suffix = el.dataset.suffix || '';
+          var useComma = el.dataset.comma === 'true';
+          var duration = 1800;
+          var startTime = null;
+
+          function step(timestamp) {
+            if (!startTime) startTime = timestamp;
+            var elapsed = timestamp - startTime;
+            var progress = Math.min(elapsed / duration, 1);
+            var eased = 1 - Math.pow(1 - progress, 3);
+            var current = Math.round(eased * target);
+            el.textContent = (useComma ? current.toLocaleString() : current) + suffix;
+            if (progress < 1) requestAnimationFrame(step);
+          }
+
+          requestAnimationFrame(step);
+        });
+      }, { threshold: 0.25 });
+
+      counterObserver.observe(statsSection);
+    })();
   </script>
 
 </body>
