@@ -1866,23 +1866,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         sb.from('ai_bookings').insert([payload]).then(function (result) {
           if (result.error) throw result.error;
 
-          // Fire all tracking BEFORE replacing the form DOM
-          // WhatConverts — pass form ID string + field data matching the input IDs
-          if (typeof window.wc_capture_form === 'function') {
-            window.wc_capture_form(form);
-          } else if (typeof window.wc_form_ypbib === 'function') {
-            window.wc_form_ypbib('bookingForm', {
-              name:    payload.customer_name,
-              phone:   payload.customer_phone,
-              email:   payload.customer_email,
-              make:    payload.vehicle_make,
-              model:   payload.vehicle_model,
-              year:    payload.vehicle_year,
-              service: payload.service_type,
-              date:    payload.preferred_date,
-              time:    payload.preferred_time
-            });
-          }
+          // WhatConverts lead is created server-side by the ai-notify-new-booking
+          // edge function on Supabase INSERT — no client-side WC call needed.
 
           // GTM / GA4
           if (window.dataLayer) {
