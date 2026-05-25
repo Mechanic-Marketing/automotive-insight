@@ -19,6 +19,7 @@ interface BookingRecord {
   vehicle_make: string | null;
   vehicle_model: string | null;
   vehicle_year: string | null;
+  landing_page: string | null;
   service_type: string;
   preferred_date: string | null;
   preferred_time: string | null;
@@ -90,8 +91,8 @@ async function notifyWhatConverts(
 
   const vehicle = [r.vehicle_make, r.vehicle_model, r.vehicle_year].filter(Boolean).join(" ") || "Not provided";
 
-  // Build landing_url with UTM params — WhatConverts reads attribution from this URL
-  const landingUrl = new URL("https://automotiveinsight.com.au/");
+  // Build landing_url — use actual page path if captured, otherwise root
+  const landingUrl = new URL("https://automotiveinsight.com.au" + (r.landing_page ?? "/"));
   if (r.utm_source)   landingUrl.searchParams.set("utm_source",   r.utm_source);
   if (r.utm_medium)   landingUrl.searchParams.set("utm_medium",   r.utm_medium);
   if (r.utm_campaign) landingUrl.searchParams.set("utm_campaign", r.utm_campaign);

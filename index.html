@@ -1860,7 +1860,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           utm_campaign:   getParam('utm_campaign'),
           utm_content:    getParam('utm_content'),
           utm_term:       getParam('utm_term'),
-          gclid:          getParam('gclid')
+          gclid:          getParam('gclid'),
+          landing_page:   window.location.pathname
         };
 
         sb.from('ai_bookings').insert([payload]).then(function (result) {
