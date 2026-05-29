@@ -1694,6 +1694,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <input type="text" id="year" name="Vehicle Year" placeholder="e.g. 2021" />
           </div>
         </div>
+        <div class="form-row single">
+          <div class="form-group">
+            <label for="registration">Vehicle Registration</label>
+            <input type="text" id="registration" name="Vehicle Registration" placeholder="e.g. 1AB2CD" />
+          </div>
+        </div>
 
         <span class="form-section-label">Booking</span>
         <div class="form-row single">
@@ -1702,14 +1708,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <input type="text" id="service" name="Service Requested" placeholder="e.g. Logbook service, brake check" />
           </div>
         </div>
-        <div class="form-row">
+        <div class="form-row single">
           <div class="form-group">
             <label for="date">Preferred Date</label>
             <input type="date" id="date" name="Preferred Date" />
-          </div>
-          <div class="form-group">
-            <label for="time">Preferred Time</label>
-            <input type="time" id="time" name="Preferred Time" />
           </div>
         </div>
 
@@ -1852,10 +1854,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           customer_phone: document.getElementById('phone').value.trim(),
           vehicle_make:   document.getElementById('make').value.trim() || null,
           vehicle_model:  document.getElementById('model').value.trim() || null,
-          vehicle_year:   document.getElementById('year').value.trim() || null,
-          service_type:   document.getElementById('service').value.trim() || '(not specified)',
-          preferred_date: document.getElementById('date').value || null,
-          preferred_time: document.getElementById('time').value || null,
+          vehicle_year:         document.getElementById('year').value.trim() || null,
+          vehicle_registration: document.getElementById('registration').value.trim() || null,
+          service_type:         document.getElementById('service').value.trim() || '(not specified)',
+          preferred_date:       document.getElementById('date').value || null,
           utm_source:     getParam('utm_source'),
           utm_medium:     getParam('utm_medium'),
           utm_campaign:   getParam('utm_campaign'),
