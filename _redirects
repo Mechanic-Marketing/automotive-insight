@@ -1,0 +1,8 @@
+# Cloudflare Pages redirects
+# Format: /source /destination status-code
+#
+# WordPress URL audit: all 15 known WordPress paths have matching static pages.
+# No orphaned paths — no per-path redirects needed.
+#
+# Catch-all: any unmatched path falls back to the homepage.
+/* / 301
