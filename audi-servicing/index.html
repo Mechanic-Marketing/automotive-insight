@@ -536,7 +536,7 @@
   <div class="modal-box">
     <button class="modal-close" onclick="closeModal()" aria-label="Close">&times;</button>
     <h2 id="modalTitle">Book Your Audi Service</h2>
-    <p class="modal-sub">Fill out the form and we will be in touch within 48 hours.</p>
+    <p class="modal-sub">Fill out the form and we will be in touch shortly.</p>
     <form id="bookingForm">
       <span class="form-section-label">Contact Details</span>
       <div class="form-row">
@@ -624,7 +624,7 @@
         if (result.error) throw result.error;
         if (window.dataLayer) dataLayer.push({ event: 'form_submission', form_name: 'booking_form', conversion_type: 'booking_enquiry' });
         if (typeof gtag === 'function') gtag('event', 'generate_lead', { service_type: payload.service_type });
-        form.innerHTML = '<div class="form-success"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg><h3>Booking request sent!</h3><p>We\'ll be in touch within 48 hours to confirm your appointment.</p></div>';
+        form.innerHTML = '<div class="form-success"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg><h3>Booking request sent!</h3><p>We\'ll be in touch shortly to confirm your booking.</p></div>';
       }).catch(function(err) {
         console.error('Booking error:', err); btn.disabled = false; btn.textContent = 'Submit Booking ➜';
         var em = form.querySelector('.form-error-msg'); if (!em) { em = document.createElement('p'); em.className = 'form-error-msg'; em.textContent = 'Something went wrong — please call us on 08 6150 5820.'; form.appendChild(em); }
