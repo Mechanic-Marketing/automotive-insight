@@ -212,26 +212,32 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="form-inner">
       <h2>Book Your Audi Service</h2>
       <p class="form-sub">Fill out the form below and we will reply within 48 hours.</p>
-      <form action="mailto:admin@automotiveinsight.com.au" method="post" enctype="text/plain">
+      <form id="bookingForm">
         <span class="form-section-label">Contact Details</span>
         <div class="form-row">
           <div class="form-group"><label for="name">Name</label><input type="text" id="name" name="Name" placeholder="Your name" required /></div>
           <div class="form-group"><label for="phone">Phone</label><input type="tel" id="phone" name="Phone" placeholder="04XX XXX XXX" required /></div>
         </div>
-        <div class="form-row single"><div class="form-group"><label for="email">Email</label><input type="email" id="email" name="Email" placeholder="your@email.com" required /></div></div>
+        <div class="form-row single">
+          <div class="form-group"><label for="email">Email</label><input type="email" id="email" name="Email" placeholder="your@email.com" required /></div>
+        </div>
         <span class="form-section-label">Vehicle Details</span>
         <div class="form-row">
-          <div class="form-group"><label for="make">Vehicle Make</label><input type="text" id="make" name="Vehicle Make" placeholder="Audi" /></div>
-          <div class="form-group"><label for="model">Vehicle Model</label><input type="text" id="model" name="Vehicle Model" placeholder="e.g. A4, Q5" /></div>
+          <div class="form-group"><label for="make">Make</label><input type="text" id="make" name="Vehicle Make" placeholder="Audi" /></div>
+          <div class="form-group"><label for="model">Model</label><input type="text" id="model" name="Vehicle Model" placeholder="e.g. A4, Q5" /></div>
         </div>
-        <div class="form-row single"><div class="form-group"><label for="year">Vehicle Year</label><input type="text" id="year" name="Vehicle Year" placeholder="e.g. 2019" /></div></div>
-        <span class="form-section-label">Booking</span>
-        <div class="form-row single"><div class="form-group"><label for="service">Service Requested</label><input type="text" id="service" name="Service Requested" placeholder="e.g. Audi logbook service, DSG service" /></div></div>
         <div class="form-row">
-          <div class="form-group"><label for="date">Preferred Date</label><input type="date" id="date" name="Preferred Date" /></div>
-          <div class="form-group"><label for="time">Preferred Time</label><input type="time" id="time" name="Preferred Time" /></div>
+          <div class="form-group"><label for="year">Year</label><input type="text" id="year" name="Vehicle Year" placeholder="e.g. 2021" /></div>
+          <div class="form-group"><label for="registration">Registration</label><input type="text" id="registration" name="Vehicle Registration" placeholder="e.g. 1AB2CD" /></div>
         </div>
-        <button type="submit" class="btn-submit">Submit &#10230;</button>
+        <span class="form-section-label">Booking</span>
+        <div class="form-row single">
+          <div class="form-group"><label for="service">Service Required</label><input type="text" id="service" name="Service Requested" placeholder="e.g. Audi logbook service" /></div>
+        </div>
+        <div class="form-row single">
+          <div class="form-group"><label for="date">Preferred Date</label><input type="date" id="date" name="Preferred Date" /></div>
+        </div>
+        <button type="submit" class="btn-submit">Submit Booking &#10140;</button>
       </form>
     </div>
   </section>
@@ -270,5 +276,48 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <a href="https://mechanicmarketing.co/" target="_blank" rel="noopener" class="footer-mm-logo"><img src="../images/mm-logo-orange.png" alt="Mechanic Marketing" /></a>
     </div>
   </footer>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+  (function() {
+    var SUPABASE_URL = 'https://prqbvbhuwfpdkkrkqizj.supabase.co';
+    var SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBycWJ2Ymh1d2ZwZGtrcmtxaXpqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzY5OTA1MzQsImV4cCI6MjA5MjU2NjUzNH0.Io5IHsyp23yThoyZD7Ccs4UygTtwx_0rIRTlnS3pYZQ';
+    function getParam(k) { return new URLSearchParams(window.location.search).get(k) || '(not set)'; }
+    var form = document.getElementById('bookingForm');
+    if (!form) return;
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      try { if (typeof window.wc_capture_form === 'function') window.wc_capture_form(form); } catch(ex) {}
+      var btn = form.querySelector('.btn-submit');
+      btn.disabled = true; btn.textContent = 'Sending…';
+      var sb = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+      var payload = {
+        customer_name: document.getElementById('name').value.trim(),
+        customer_email: document.getElementById('email').value.trim(),
+        customer_phone: document.getElementById('phone').value.trim(),
+        vehicle_make: document.getElementById('make').value.trim() || null,
+        vehicle_model: document.getElementById('model').value.trim() || null,
+        vehicle_year: document.getElementById('year').value.trim() || null,
+        vehicle_registration: document.getElementById('registration').value.trim() || null,
+        service_type: document.getElementById('service').value.trim() || '(not specified)',
+        preferred_date: document.getElementById('date').value || null,
+        utm_source: getParam('utm_source'), utm_medium: getParam('utm_medium'),
+        utm_campaign: getParam('utm_campaign'), utm_content: getParam('utm_content'),
+        utm_term: getParam('utm_term'), gclid: getParam('gclid'),
+        landing_page: window.location.pathname
+      };
+      sb.from('ai_bookings').insert([payload]).then(function(result) {
+        if (result.error) throw result.error;
+        if (window.dataLayer) dataLayer.push({ event: 'form_submission', form_name: 'booking_form', conversion_type: 'booking_enquiry' });
+        if (typeof gtag === 'function') gtag('event', 'generate_lead', { service_type: payload.service_type });
+        form.innerHTML = '<div class="form-success"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg><h3>Booking request sent!</h3><p>We\'ll be in touch within 48 hours to confirm your appointment.</p></div>';
+      }).catch(function(err) {
+        console.error('Booking error:', err);
+        btn.disabled = false; btn.textContent = 'Submit Booking ➜';
+        var em = form.querySelector('.form-error-msg');
+        if (!em) { em = document.createElement('p'); em.className = 'form-error-msg'; em.textContent = 'Something went wrong — please call us on 08 6150 5820.'; form.appendChild(em); }
+      });
+    });
+  })();
+</script>
 </body>
 </html>
