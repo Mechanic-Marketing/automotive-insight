@@ -589,15 +589,15 @@
     <p class="section-sub-light">Since opening our doors in Shenton Park, we've built our reputation one vehicle at a time, through honest advice, careful workmanship, and relationships that last.</p>
     <div class="stats-grid">
       <div class="stat-card reveal">
-        <span class="stat-num" data-target="20" data-suffix="+">0</span>
+        <span class="stat-num" data-target="20" data-suffix="+">20+</span>
         <span class="stat-label">Years in Business</span>
       </div>
       <div class="stat-card reveal reveal-d1">
-        <span class="stat-num" data-target="10000" data-suffix="+" data-comma="true">0</span>
+        <span class="stat-num" data-target="10000" data-suffix="+" data-comma="true">10,000+</span>
         <span class="stat-label">Vehicles Serviced</span>
       </div>
       <div class="stat-card reveal reveal-d2">
-        <span class="stat-num" data-target="5000" data-suffix="+" data-comma="true">0</span>
+        <span class="stat-num" data-target="5000" data-suffix="+" data-comma="true">5,000+</span>
         <span class="stat-label">Diagnostic Scans</span>
       </div>
       <div class="stat-card reveal reveal-d3">
@@ -754,7 +754,7 @@
   <div class="modal-box">
     <button class="modal-close" onclick="closeModal()" aria-label="Close">&times;</button>
     <h2 id="modalTitle">Book Your Car In</h2>
-    <p class="modal-sub">Fill out the form and we'll be in touch within 48 hours.</p>
+    <p class="modal-sub">Fill out the form and we'll be in touch shortly to confirm your booking. Need it sooner? Call us on <a href="tel:+61861505820" style="color: var(--gold);">08 6150 5820</a>.</p>
     <form id="bookingForm">
       <span class="form-section-label">Contact Details</span>
       <div class="form-row">
@@ -865,7 +865,7 @@
         }
         requestAnimationFrame(step);
       });
-    }, { threshold: 0.25 });
+    }, { threshold: 0.1 });
     co.observe(s);
   })();
 
@@ -926,7 +926,7 @@
         if (result.error) throw result.error;
         if (window.dataLayer) dataLayer.push({ event: 'form_submission', form_name: 'booking_form', conversion_type: 'booking_enquiry' });
         if (typeof gtag === 'function') gtag('event', 'generate_lead', { service_type: payload.service_type });
-        form.innerHTML = '<div class="form-success"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg><h3>Booking request sent!</h3><p>We\'ll be in touch within 48 hours to confirm your appointment.</p></div>';
+        form.innerHTML = '<div class="form-success"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg><h3>Booking request sent!</h3><p>We\'ll be in touch soon to confirm your booking. If you need to speak to someone sooner, call us on <a href="tel:+61861505820" style="color: var(--gold);">08 6150 5820</a>.</p></div>';
       }).catch(function(err) {
         console.error('Booking error:', err);
         btn.disabled = false; btn.textContent = 'Submit Booking ➜';

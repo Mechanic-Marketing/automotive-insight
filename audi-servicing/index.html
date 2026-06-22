@@ -211,7 +211,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <section class="form-section" id="form">
     <div class="form-inner">
       <h2>Book Your Audi Service</h2>
-      <p class="form-sub">Fill out the form below and we will reply within 48 hours.</p>
+      <p class="form-sub">Fill out the form and we'll be in touch shortly. Need it sooner? Call us on <a href="tel:+61861505820" style="color: var(--ai-gold);">08 6150 5820</a>.</p>
       <form id="bookingForm">
         <span class="form-section-label">Contact Details</span>
         <div class="form-row">
@@ -309,7 +309,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         if (result.error) throw result.error;
         if (window.dataLayer) dataLayer.push({ event: 'form_submission', form_name: 'booking_form', conversion_type: 'booking_enquiry' });
         if (typeof gtag === 'function') gtag('event', 'generate_lead', { service_type: payload.service_type });
-        form.innerHTML = '<div class="form-success"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg><h3>Booking request sent!</h3><p>We\'ll be in touch within 48 hours to confirm your appointment.</p></div>';
+        form.innerHTML = '<div class="form-success"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg><h3>Booking request sent!</h3><p>We\'ll be in touch soon to confirm your booking. If you need to speak to someone sooner, call us on <a href="tel:+61861505820" style="color: var(--gold);">08 6150 5820</a>.</p></div>';
       }).catch(function(err) {
         console.error('Booking error:', err);
         btn.disabled = false; btn.textContent = 'Submit Booking ➜';
