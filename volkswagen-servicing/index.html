@@ -11,7 +11,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-  <script type="text/javascript" src="//s.ksrndkehqnwntyxlhgto.com/154642.js"></script>
+  <script type="text/javascript" src="//s.ksrndkehqnwntyxlhgto.com/154642.js" data-cfasync="false"></script>
   <style>
     :root{--gold:#DCA54A;--gold-dark:#C8902A;--gold-light:#F0C060;--gold-grad:linear-gradient(135deg,#C8902A 0%,#DCA54A 45%,#F0C060 100%);--gold-glow:0 4px 24px rgba(220,165,74,0.40);--black:#111111;--dark:#1a1a1a;--dark-card:#222222;--dark-border:#2e2e2e;--white:#ffffff;--off-white:#f7f5f2;--body:#3a3a3a;--muted:#888888;--font:'Poppins',sans-serif;--w:1200px;--r-sm:8px;--r-md:14px;--r-lg:20px;--r-pill:100px}
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
@@ -167,7 +167,6 @@
       body{padding-bottom:72px}
       .hdr-phone{display:none}
     }
-      .form-group:has(input[required]) label::after { content: " *"; color: #e53e3e; font-weight: 700; } /* required asterisk */
   </style>
 </head>
 <body>
@@ -430,27 +429,27 @@
     <form id="bookingForm">
       <span class="form-section-label">Contact Details</span>
       <div class="form-row">
-        <div class="form-group"><label for="name">Name</label><input type="text" id="name" placeholder="Your name" required /></div>
-        <div class="form-group"><label for="phone">Phone</label><input type="tel" id="phone" placeholder="04XX XXX XXX" required /></div>
+        <div class="form-group"><label for="name">Name</label><input type="text" id="name" name="Name" placeholder="Your name" required /></div>
+        <div class="form-group"><label for="phone">Phone</label><input type="tel" id="phone" name="Phone" placeholder="04XX XXX XXX" required /></div>
       </div>
       <div class="form-row single">
-        <div class="form-group"><label for="email">Email</label><input type="email" id="email" placeholder="your@email.com" required /></div>
+        <div class="form-group"><label for="email">Email</label><input type="email" id="email" name="Email" placeholder="your@email.com" required /></div>
       </div>
       <span class="form-section-label">Vehicle Details</span>
       <div class="form-row">
-        <div class="form-group"><label for="make">Make</label><input type="text" id="make" placeholder="Volkswagen" required /></div>
-        <div class="form-group"><label for="model">Model</label><input type="text" id="model" placeholder="e.g. Golf, Tiguan" required /></div>
+        <div class="form-group"><label for="make">Make</label><input type="text" id="make" name="Vehicle Make" placeholder="Volkswagen" required /></div>
+        <div class="form-group"><label for="model">Model</label><input type="text" id="model" name="Vehicle Model" placeholder="e.g. Golf, Tiguan" required /></div>
       </div>
       <div class="form-row">
-        <div class="form-group"><label for="year">Year</label><input type="text" id="year" placeholder="e.g. 2020" required /></div>
-        <div class="form-group"><label for="rego">Registration</label><input type="text" id="rego" placeholder="e.g. 1AB2CD" required /></div>
+        <div class="form-group"><label for="year">Year</label><input type="text" id="year" name="Vehicle Year" placeholder="e.g. 2020" required /></div>
+        <div class="form-group"><label for="rego">Registration</label><input type="text" id="rego" name="Vehicle Registration" placeholder="e.g. 1AB2CD" required /></div>
       </div>
       <span class="form-section-label">Booking</span>
       <div class="form-row single">
-        <div class="form-group"><label for="service">Service Required</label><input type="text" id="service" placeholder="e.g. VW logbook service" required /></div>
+        <div class="form-group"><label for="service">Service Required</label><input type="text" id="service" name="Service Requested" placeholder="e.g. VW logbook service" required /></div>
       </div>
       <div class="form-row single">
-        <div class="form-group"><label for="date">Preferred Date</label><input type="date" id="date" /></div>
+        <div class="form-group"><label for="date">Preferred Date</label><input type="date" id="date" name="Preferred Date" /></div>
       </div>
       <button type="submit" class="btn-submit">Submit Booking &#10132;</button>
     </form>

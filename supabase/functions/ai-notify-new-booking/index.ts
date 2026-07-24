@@ -5,9 +5,6 @@ import "jsr:@supabase/functions-js/edge-runtime.d.ts";
 //   AI_RESEND_API_KEY      Resend email API key
 //   AI_WORKSHOP_EMAIL      Workshop notification address
 //   AI_ZAPIER_WEBHOOK_URL  Zapier webhook for SMS (optional)
-//   AI_WC_API_KEY          WhatConverts API key   (154642-6824cd01c68e3483)
-//   AI_WC_API_SECRET       WhatConverts API secret
-//   AI_WC_PROFILE_ID       WhatConverts profile ID (default: 154642)
 // ---------------------------------------------------------------------------
 
 interface BookingRecord {
@@ -78,71 +75,6 @@ async function sendEmail(
   }
 }
 
-async function notifyWhatConverts(
-  r: BookingRecord,
-  apiKey: string,
-  apiSecret: string,
-  profileId: string
-): Promise<void> {
-  const credentials = btoa(`${apiKey}:${apiSecret}`);
-
-  // WhatConverts requires ISO date without microseconds
-  const dateCreated = new Date(r.created_at).toISOString().split(".")[0] + "Z";
-
-  const vehicle = [r.vehicle_make, r.vehicle_model, r.vehicle_year].filter(Boolean).join(" ") || "Not provided";
-
-  // Build landing_url — use actual page path if captured, otherwise root
-  const landingUrl = new URL("https://automotiveinsight.com.au" + (r.landing_page ?? "/"));
-  if (r.utm_source)   landingUrl.searchParams.set("utm_source",   r.utm_source);
-  if (r.utm_medium)   landingUrl.searchParams.set("utm_medium",   r.utm_medium);
-  if (r.utm_campaign) landingUrl.searchParams.set("utm_campaign", r.utm_campaign);
-  if (r.utm_content)  landingUrl.searchParams.set("utm_content",  r.utm_content);
-  if (r.utm_term)     landingUrl.searchParams.set("utm_term",     r.utm_term);
-  if (r.gclid)        landingUrl.searchParams.set("gclid",        r.gclid);
-
-  const params = new URLSearchParams({
-    profile_id:    profileId,
-    lead_type:     "web_form",
-    lead_status:   "good",
-    phone_number:  formatAustralianPhone(r.customer_phone),
-    email_address: r.customer_email,
-    date_created:  dateCreated,
-    landing_url:   landingUrl.toString(),
-    // Attribution fields
-    ...(r.utm_source   ? { lead_source:   r.utm_source }   : {}),
-    ...(r.utm_medium   ? { lead_medium:   r.utm_medium }   : {}),
-    ...(r.utm_campaign ? { lead_campaign: r.utm_campaign } : {}),
-    ...(r.utm_content  ? { lead_content:  r.utm_content }  : {}),
-    ...(r.utm_term     ? { lead_keyword:  r.utm_term }     : {}),
-    ...(r.gclid        ? { gclid:         r.gclid }        : {}),
-    // Form fields visible in WhatConverts lead detail
-    "additional_fields[Name]":           r.customer_name,
-    "additional_fields[Phone]":          r.customer_phone,
-    "additional_fields[Email]":          r.customer_email,
-    "additional_fields[Service Type]":   r.service_type,
-    "additional_fields[Vehicle]":        vehicle,
-    "additional_fields[Preferred Date]": `${r.preferred_date ?? ""} (${r.preferred_time ?? ""})`,
-    "additional_fields[Notes]":          r.notes ?? "",
-    "additional_fields[utm_source]":     r.utm_source  ?? "",
-    "additional_fields[utm_medium]":     r.utm_medium  ?? "",
-    "additional_fields[utm_campaign]":   r.utm_campaign ?? "",
-    "additional_fields[gclid]":          r.gclid ?? "",
-  });
-
-  const res = await fetch("https://app.whatconverts.com/api/v1/leads", {
-    method: "POST",
-    headers: {
-      Authorization:  `Basic ${credentials}`,
-      "Content-Type": "application/x-www-form-urlencoded",
-    },
-    body: params.toString(),
-  });
-
-  if (!res.ok) {
-    const text = await res.text();
-    throw new Error(`WhatConverts API error ${res.status}: ${text}`);
-  }
-}
 
 async function notifyZapier(r: BookingRecord, webhookUrl: string): Promise<void> {
   const vehicle = [r.vehicle_make, r.vehicle_model, r.vehicle_year].filter(Boolean).join(" ") || "Not provided";
@@ -177,9 +109,6 @@ Deno.serve(async (req: Request) => {
   const RESEND_API_KEY   = Deno.env.get("AI_RESEND_API_KEY");
   const WORKSHOP_EMAIL   = Deno.env.get("AI_WORKSHOP_EMAIL");
   const ZAPIER_WEBHOOK   = Deno.env.get("AI_ZAPIER_WEBHOOK_URL");
-  const WC_API_KEY       = Deno.env.get("AI_WC_API_KEY");
-  const WC_API_SECRET    = Deno.env.get("AI_WC_API_SECRET");
-  const WC_PROFILE_ID    = Deno.env.get("AI_WC_PROFILE_ID") ?? "154642";
 
   let payload: WebhookPayload;
   try {
@@ -246,13 +175,6 @@ Shenton Park, WA`;
     tasks.push(notifyZapier(r, ZAPIER_WEBHOOK));
   } else {
     console.warn("AI_ZAPIER_WEBHOOK_URL not set — skipping Zapier");
-  }
-
-  // ── WhatConverts ─────────────────────────────────────────────────────────
-  if (WC_API_KEY && WC_API_SECRET) {
-    tasks.push(notifyWhatConverts(r, WC_API_KEY, WC_API_SECRET, WC_PROFILE_ID));
-  } else {
-    console.warn("AI_WC_API_KEY / AI_WC_API_SECRET not set — skipping WhatConverts");
   }
 
   const results = await Promise.allSettled(tasks);
