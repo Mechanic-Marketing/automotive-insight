@@ -16,6 +16,7 @@ interface BookingRecord {
   vehicle_make: string | null;
   vehicle_model: string | null;
   vehicle_year: string | null;
+  vehicle_registration: string | null;
   landing_page: string | null;
   service_type: string;
   preferred_date: string | null;
@@ -78,12 +79,14 @@ async function sendEmail(
 
 async function notifyZapier(r: BookingRecord, webhookUrl: string): Promise<void> {
   const vehicle = [r.vehicle_make, r.vehicle_model, r.vehicle_year].filter(Boolean).join(" ") || "Not provided";
+  const rego = r.vehicle_registration ?? "Not provided";
 
   const params = new URLSearchParams({
     customer_name:  r.customer_name,
     customer_phone: formatAustralianPhone(r.customer_phone),
     customer_email: r.customer_email,
     vehicle,
+    rego,
     service_type:   r.service_type,
     preferred_date: r.preferred_date ?? "",
     preferred_time: r.preferred_time ?? "",
@@ -139,9 +142,12 @@ Customer: ${r.customer_name}
 Phone:    ${r.customer_phone}
 Email:    ${r.customer_email}
 
-Vehicle:        ${vehicle}
-Service:        ${r.service_type}
-Preferred date: ${r.preferred_date ?? "Not specified"} — ${r.preferred_time ?? ""}
+Make:    ${r.vehicle_make ?? "Not provided"}
+Model:   ${r.vehicle_model ?? "Not provided"}
+Year:    ${r.vehicle_year ?? "Not provided"}
+Rego:    ${r.vehicle_registration ?? "Not provided"}
+Service: ${r.service_type}
+Date:    ${r.preferred_date ?? "Not specified"} — ${r.preferred_time ?? ""}
 
 Notes: ${notes}
 
