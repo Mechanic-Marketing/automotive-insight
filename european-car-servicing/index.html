@@ -9,7 +9,7 @@
   <link rel="canonical" href="https://services.automotiveinsight.com.au/european-car-servicing/" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet" />
   <style>
     :root{--gold:#DCA54A;--gold-dark:#C8902A;--gold-light:#F0C060;--gold-grad:linear-gradient(135deg,#C8902A 0%,#DCA54A 45%,#F0C060 100%);--gold-glow:0 4px 24px rgba(220,165,74,0.40);--black:#111111;--dark:#1a1a1a;--dark-card:#222222;--dark-border:#2e2e2e;--white:#ffffff;--off-white:#f7f5f2;--body:#3a3a3a;--muted:#888888;--font:'Poppins',sans-serif;--sh-sm:0 2px 10px rgba(0,0,0,0.08);--sh-md:0 4px 28px rgba(0,0,0,0.13);--sh-lg:0 10px 50px rgba(0,0,0,0.20);--r-sm:8px;--r-md:14px;--r-lg:20px;--r-pill:100px;--w:1200px}
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}body{font-family:var(--font);color:var(--body);background:var(--white);line-height:1.6;overflow-x:hidden}img{display:block;max-width:100%}a{text-decoration:none}
@@ -34,8 +34,15 @@
     @media(max-width:768px){.hero{padding:3.5rem 1.25rem 3rem}.hero-text h1{font-size:2.2rem}.services-section h2,.hiw-section h2,.faq-header h2,.cta-section h2,.reviews-header h2{font-size:1.9rem}.review-card{flex:0 0 100%!important}.form-row{grid-template-columns:1fr}.modal-box{padding:1.75rem 1.25rem;border-radius:var(--r-md)}.mobile-sticky-bar{display:block}.cta-phone{font-size:1.3rem}.header-inner{height:10vh;min-height:60px;max-height:76px}.btn-hdr-phone{display:none}.footer-bottom{flex-direction:column;text-align:center}}
     @media(max-width:500px){.trust-bar-inner{grid-template-columns:1fr}.cta-section h2{font-size:1.7rem}}
       .form-group:has(input[required]) label::after { content: " *"; color: #e53e3e; font-weight: 700; } /* required asterisk */
-  </style>
+  
+/* mobile tune-up Nov 2026 */
+@media(max-width:768px){
+ .form-group input,.form-group select,.form-group textarea{font-size:16px}
+}
+</style>
   <script type="text/javascript" src="//s.ksrndkehqnwntyxlhgto.com/154642.js" data-cfasync="false"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-17726109207" data-cfasync="false"></script>
+<script data-cfasync="false">window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date);gtag("config","AW-17726109207");</script>
 </head>
 <body>
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PV2GS3MX" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
@@ -273,7 +280,7 @@
   document.querySelectorAll('.reveal').forEach(function(el){ro.observe(el);});
   (function(){var track=document.getElementById('carouselTrack');if(!track)return;var cards=track.querySelectorAll('.review-card'),total=cards.length,current=0;function getVis(){return window.innerWidth>=1024?3:window.innerWidth>=640?2:1;}function updateWidths(){var vis=getVis(),gap=20;cards.forEach(function(c){c.style.flex='0 0 calc((100% - '+(gap*(vis-1))+'px) / '+vis+')';}); }function goTo(idx){var vis=getVis(),max=Math.max(0,total-vis);current=Math.min(Math.max(idx,0),max);var w=cards[0].getBoundingClientRect().width+20;track.style.transform='translateX(-'+(current*w)+'px)';}document.getElementById('carouselPrev').addEventListener('click',function(){goTo(current-1);});document.getElementById('carouselNext').addEventListener('click',function(){goTo(current+1);});updateWidths();window.addEventListener('resize',function(){updateWidths();goTo(current);});})();
 </script>
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
   (function(){var SUPABASE_URL='https://prqbvbhuwfpdkkrkqizj.supabase.co';var SUPABASE_ANON_KEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBycWJ2Ymh1d2ZwZGtrcmtxaXpqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzY5OTA1MzQsImV4cCI6MjA5MjU2NjUzNH0.Io5IHsyp23yThoyZD7Ccs4UygTtwx_0rIRTlnS3pYZQ';function getParam(k){return new URLSearchParams(window.location.search).get(k)||'(not set)';}var form=document.getElementById('bookingForm');if(!form)return;form.addEventListener('submit',function(e){e.preventDefault();try{if(typeof window.wc_capture_form==='function')window.wc_capture_form(form);}catch(ex){}var btn=form.querySelector('.btn-submit');btn.disabled=true;btn.textContent='Sending…';var sb=supabase.createClient(SUPABASE_URL,SUPABASE_ANON_KEY);var payload={customer_name:document.getElementById('name').value.trim(),customer_email:document.getElementById('email').value.trim(),customer_phone:document.getElementById('phone').value.trim(),vehicle_make:document.getElementById('make').value.trim()||null,vehicle_model:document.getElementById('model').value.trim()||null,vehicle_year:document.getElementById('year').value.trim()||null,vehicle_registration:document.getElementById('registration').value.trim()||null,service_type:document.getElementById('service').value.trim()||'(not specified)',preferred_date:document.getElementById('date').value||null,utm_source:getParam('utm_source'),utm_medium:getParam('utm_medium'),utm_campaign:getParam('utm_campaign'),utm_content:getParam('utm_content'),utm_term:getParam('utm_term'),gclid:getParam('gclid'),landing_page:window.location.pathname};sb.from('ai_bookings').insert([payload]).then(function(result){if(result.error)throw result.error;if(window.dataLayer)dataLayer.push({event:'form_submission',form_name:'booking_form',conversion_type:'booking_enquiry'});if(typeof gtag==='function')gtag('event','generate_lead',{service_type:payload.service_type});form.innerHTML='<div class="form-success"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg><h3>Booking request sent!</h3><p>We\'ll be in touch shortly to confirm your booking.</p></div>';}).catch(function(err){console.error('Booking error:',err);btn.disabled=false;btn.textContent='Submit Booking ➜';var em=form.querySelector('.form-error-msg');if(!em){em=document.createElement('p');em.className='form-error-msg';em.textContent='Something went wrong — please call us on 08 6150 5820.';form.appendChild(em);}});});})();
 </script>
