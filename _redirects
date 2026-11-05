@@ -1,3 +1,0 @@
-# The blog moved to the main site on 14/10/2026. These landing pages stay ad-focused.
-/blog    https://automotiveinsight.com.au/blog/          301
-/blog/*  https://automotiveinsight.com.au/blog/:splat    301
