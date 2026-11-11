@@ -29,6 +29,10 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://services.automotiveinsight.com.au/honda/</loc>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://services.automotiveinsight.com.au/hyundai/</loc>
     <priority>0.8</priority>
   </url>
